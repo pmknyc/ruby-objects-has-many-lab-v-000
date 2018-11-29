@@ -1,4 +1,5 @@
 class Artist  # Has Many songs
+
 attr_accessor :name, :song, :songs, :count
 	@@count = 0
 	@@all = []
@@ -23,21 +24,15 @@ attr_accessor :name, :song, :songs, :count
     self.add_song(song)	# call add_song method to
 	end     							# assign song to this artist & add to his/her collection
 
-#artist.add_song -- called by add_song_by_name method only!
+#artist.add_song
 	def add_song(song) ### arg is song instance ###
 		song.artist = self
 		song.artist.songs << song
-		#Song.all << song.artist unless
-		#Song.all.include?(song.artist)
 	end
 
 #iterate thru each artist.songs array
 	def self.song_count
     Song.all.count
-		#self.all.each do |songs|
-		#	all_songs << @songs
-		#end
-		#all_songs
 	end
 #class end below
 end
