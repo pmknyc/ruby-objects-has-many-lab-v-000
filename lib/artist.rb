@@ -6,6 +6,7 @@ attr_accessor :name, :song, :songs, :count
 	def initialize(name)
 		@name = name
 		@songs = []
+		@@all << self
 	end
 
 	def self.all
@@ -25,15 +26,28 @@ attr_accessor :name, :song, :songs, :count
 #artist.add_song -- called by add_song_by_name method only!
 	def add_song(song) ### arg is song instance ###
 		song.artist = self
-		@songs << song
-		Song.all << song.artist unless
-		Song.all.include?(song.artist)
-		@@all << song
+		song.artist.songs << song
+		#Song.all << song.artist unless
+		#Song.all.include?(song.artist)
 	end
 
 #iterate thru each artist.songs array
-	def song_count
-		@@all.collect do {|songs| @songs }
+	def self.song_count
+    Song.all.count
+		#self.all.each do |songs|
+		#	all_songs << @songs
+		#end
+		#all_songs
 	end
 #class end below
 end
+
+#adele = Artist.new("Adele")
+#adele.add_song(hello)
+#Artist.new("Beyonce")
+#adele.name
+#adele.songs
+#adele.add_song_by_name("Rolling in the Deep")
+#adele.songs
+#Artist.song_count
+#
